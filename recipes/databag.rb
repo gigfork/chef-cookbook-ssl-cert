@@ -11,8 +11,8 @@ bag    = node['ssl-cert']['databag']['name']
 site   = encrypted_data_bag(bag, bag_id).to_hash
 site.delete('id')
 
-site.each do |path, cert|
-  file path do
+site.each do |dest, cert|
+  file dest.dup do
     owner "root"
     group "root"
     content cert  
